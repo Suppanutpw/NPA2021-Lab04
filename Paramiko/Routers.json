@@ -2,19 +2,19 @@
    {
       "IP":"172.31.107.4",
       "Hostname":"R1",
-      "Username": "admin",
-      "Password": "cisco",
+      "Username":"admin",
+      "Password":"cisco",
       "Interfaces":[
          {
             "Interface":"g0/1",
-            "DHCP": false,
+            "DHCP":false,
             "IP":"172.31.107.17",
             "Subnet":"255.255.255.240",
             "VRF":"control-Data"
          },
          {
             "Interface":"g0/2",
-            "DHCP": false,
+            "DHCP":false,
             "IP":"172.31.107.33",
             "Subnet":"255.255.255.240",
             "VRF":"control-Data"
@@ -39,26 +39,25 @@
                "Number":20,
                "Network":"10.253.190.0 0.0.0.255"
             }
-
          ]
       }
    },
    {
       "IP":"172.31.107.5",
       "Hostname":"R2",
-      "Username": "admin",
-      "Password": "cisco",
+      "Username":"admin",
+      "Password":"cisco",
       "Interfaces":[
          {
             "Interface":"g0/1",
-            "DHCP": false,
+            "DHCP":false,
             "IP":"172.31.107.34",
             "Subnet":"255.255.255.240",
             "VRF":"control-Data"
          },
          {
             "Interface":"g0/2",
-            "DHCP": false,
+            "DHCP":false,
             "IP":"172.31.107.49",
             "Subnet":"255.255.255.240",
             "VRF":"control-Data"
@@ -83,19 +82,18 @@
                "Number":20,
                "Network":"10.253.190.0 0.0.0.255"
             }
-
          ]
       }
    },
    {
       "IP":"172.31.107.6",
       "Hostname":"R3",
-      "Username": "admin",
-      "Password": "cisco",
+      "Username":"admin",
+      "Password":"cisco",
       "Interfaces":[
          {
             "Interface":"g0/1",
-            "DHCP": false,
+            "DHCP":false,
             "IP":"172.31.107.50",
             "Subnet":"255.255.255.240",
             "VRF":"control-Data",
@@ -104,7 +102,7 @@
          {
             "Interface":"g0/2",
             "NATSide":"outside",
-            "DHCP": true,
+            "DHCP":true,
             "VRF":"control-Data"
          }
       ],
@@ -126,11 +124,10 @@
                "Number":20,
                "Network":"10.253.190.0 0.0.0.255"
             }
-
          ]
-      }, 
+      },
       "PAT":{
-         "VRF": "control-Data",
+         "VRF":"control-Data",
          "Number":7,
          "Interface":"g0/2",
          "Network":"172.31.107.0 0.0.0.255"

@@ -12,8 +12,7 @@ for ip in devices_ip:
     client.load_system_host_keys("paramiko_privateKey.ppk")
     privateKey = client.get_host_keys()
 
-    client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    client.connect(hostname=ip, username=username, pkey=privateKey, look_for_keys=True)
+    client.connect(hostname=ip, username=username, allow_agent=False, pkey=privateKey, look_for_keys=True)
     print("Connecting to {} ...".format(ip))
     with client.invoke_shell() as ssh:
         print("Connected to {} ...".format(ip))

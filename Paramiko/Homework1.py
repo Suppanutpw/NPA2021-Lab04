@@ -65,6 +65,9 @@ class RouterConfig:
         for i in range(len(permitIPs)):
             self.commands.append("%d permit %s %s"%(((i+1)*10), permitIPs[i][0], permitIPs[i][1]))
         self.commands.append("exit") # config-std-nacl -> config
+        self.commands.append("line vty 0 4")
+        self.commands.append("access-class %s in"%listName)
+        self.commands.append("exit") # line-vty -> config
 
 R1 = RouterConfig(devices_ip[0], username, password)
 R1.StaticIP('g0/1', '172.31.107.17', '255.255.255.240')
