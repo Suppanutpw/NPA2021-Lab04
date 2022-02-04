@@ -1,0 +1,139 @@
+[
+   {
+      "IP":"172.31.107.4",
+      "Hostname":"R1",
+      "Username": "admin",
+      "Password": "cisco",
+      "Interfaces":[
+         {
+            "Interface":"g0/1",
+            "DHCP": false,
+            "IP":"172.31.107.17",
+            "Subnet":"255.255.255.240",
+            "VRF":"control-Data"
+         },
+         {
+            "Interface":"g0/2",
+            "DHCP": false,
+            "IP":"172.31.107.33",
+            "Subnet":"255.255.255.240",
+            "VRF":"control-Data"
+         }
+      ],
+      "OSPF":{
+         "VRF":"control-Data",
+         "DefualtOriginate":false,
+         "Networks":[
+            "172.31.107.16 0.0.0.15 area 0",
+            "172.31.107.32 0.0.0.15 area 0"
+         ]
+      },
+      "VTYACL":{
+         "Name":"NatCloud",
+         "Networks":[
+            {
+               "Number":10,
+               "Network":"172.31.107.0 0.0.0.15"
+            },
+            {
+               "Number":20,
+               "Network":"10.253.190.0 0.0.0.255"
+            }
+
+         ]
+      }
+   },
+   {
+      "IP":"172.31.107.5",
+      "Hostname":"R2",
+      "Username": "admin",
+      "Password": "cisco",
+      "Interfaces":[
+         {
+            "Interface":"g0/1",
+            "DHCP": false,
+            "IP":"172.31.107.34",
+            "Subnet":"255.255.255.240",
+            "VRF":"control-Data"
+         },
+         {
+            "Interface":"g0/2",
+            "DHCP": false,
+            "IP":"172.31.107.49",
+            "Subnet":"255.255.255.240",
+            "VRF":"control-Data"
+         }
+      ],
+      "OSPF":{
+         "VRF":"control-Data",
+         "DefualtOriginate":false,
+         "Networks":[
+            "172.31.107.32 0.0.0.15 area 0",
+            "172.31.107.48 0.0.0.15 area 0"
+         ]
+      },
+      "VTYACL":{
+         "Name":"NatCloud",
+         "Networks":[
+            {
+               "Number":10,
+               "Network":"172.31.107.0 0.0.0.15"
+            },
+            {
+               "Number":20,
+               "Network":"10.253.190.0 0.0.0.255"
+            }
+
+         ]
+      }
+   },
+   {
+      "IP":"172.31.107.6",
+      "Hostname":"R3",
+      "Username": "admin",
+      "Password": "cisco",
+      "Interfaces":[
+         {
+            "Interface":"g0/1",
+            "DHCP": false,
+            "IP":"172.31.107.50",
+            "Subnet":"255.255.255.240",
+            "VRF":"control-Data",
+            "NATSide":"inside"
+         },
+         {
+            "Interface":"g0/2",
+            "NATSide":"outside",
+            "DHCP": true,
+            "VRF":"control-Data"
+         }
+      ],
+      "OSPF":{
+         "VRF":"control-Data",
+         "DefualtOriginate":true,
+         "Networks":[
+            "172.31.107.48 0.0.0.15 area 0"
+         ]
+      },
+      "VTYACL":{
+         "Name":"NatCloud",
+         "Networks":[
+            {
+               "Number":10,
+               "Network":"172.31.107.0 0.0.0.15"
+            },
+            {
+               "Number":20,
+               "Network":"10.253.190.0 0.0.0.255"
+            }
+
+         ]
+      }, 
+      "PAT":{
+         "VRF": "control-Data",
+         "Number":7,
+         "Interface":"g0/2",
+         "Network":"172.31.107.0 0.0.0.255"
+      }
+   }
+]

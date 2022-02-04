@@ -1,0 +1,42 @@
+conf t
+
+{% for interface in interfaces %}
+interface {{ interface.Interface }}
+ vrf forwarding {{ interface.VRF }}
+ no shutdown
+ {% if interface.DHCP %}
+  ip address dhcp
+ {% else %}
+  ip address {{ interface.IP }} {{ interface.Subnet }}
+ {% endif %}
+ {% if interface.NATSide is defined %}
+  ip nat {{ interface.NATSide }}
+ {% endif %}
+{% endfor %}
+exit
+
+router ospf 1 vrf {{ ospf.VRF }}
+ {% for network in ospf.Networks %}
+  network {{ network }}
+ {% endfor %}
+ {% if ospf.DefualtOriginate %}
+  default-information originate
+ {% endif %}
+ exit
+
+ip access-list standard {{ vtyacl.Name }}
+ {% for acl in vtyacl.Networks %}
+  {{ acl.Number }} permit {{ acl.Network }}
+ {% endfor %}
+ exit
+
+{% if pat %}
+ access-list {{ pat.Number }} permit {{ pat.Network }}
+ ip nat inside source list {{ pat.Number }} interface {{ pat.Interface }} vrf {{ pat.VRF }} overload
+{% endif %}
+
+line vty 0 4
+ access-class {{ vtyacl.Name }} in
+ exit
+
+exit
