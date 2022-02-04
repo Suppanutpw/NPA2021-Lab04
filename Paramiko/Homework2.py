@@ -20,8 +20,10 @@ for routerJson in routersJson:
     )
 
     client = paramiko.SSHClient()
-    client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    client.connect (hostname=routerJson['IP'], username=routerJson['Username'], password=routerJson['Password'], look_for_keys=False)
+    with open("paramiko_privateKey", 'r') as file:
+        privateKey = paramiko.RSAKey.from_private_key(file)
+        client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        client.connect(hostname=routerJson['IP'], username=routerJson['Username'], pkey=privateKey, look_for_keys=True)
     print("Connecting to {}...".format(routerJson['IP']))
 
     commands = commands.splitlines()
