@@ -27,6 +27,13 @@ for address, loopback in ADDRESSES:
     child.expect('Password')
     child.sendline(PASSWORD)
     child.expect(PROMPT)
+
+    child.sendline('sh ip int br')
+    child.expect(PROMPT)
+    result = child.before
+    print("Before Config Loopback")
+    print(result.decode('UTF-8'))
+
     child.sendline('conf t')
     child.expect(PROMPT)
     child.sendline('int loopback 0')
@@ -37,7 +44,12 @@ for address, loopback in ADDRESSES:
     child.expect(PROMPT)
     child.sendline('exit') # config
     child.expect(PROMPT)
-    child.sendline('write')
+
+    child.sendline('sh ip int br')
     child.expect(PROMPT)
+    result = child.before
+    print("After Config Loopback")
+    print(result.decode('UTF-8'))
+
     child.sendline('exit') # privilege
     child.expect(PROMPT)

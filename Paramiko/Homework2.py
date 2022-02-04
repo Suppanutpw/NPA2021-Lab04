@@ -9,7 +9,6 @@ jsonFile.close()
 
 templateFile = open("template.j2", "r").read()
 template = Template(templateFile)
-templateFile.close()
 
 for routerJson in routersJson:
     print(routerJson['Interfaces'])
