@@ -34,6 +34,8 @@ tn.write(b"ip add 172.31.107.17 255.255.255.240\n")
 tn.write(b"no shut\n")
 tn.write(b"exit\n")
 tn.write(b"exit\n")
+tn.write(b"wr\n")
+time.sleep(2)
 tn.write(b"show ip int br\n")
 time.sleep(2)
 
